@@ -88,6 +88,9 @@ public class Controller {
                 + "&response_type=" + RESPONSE_TYPE);
         System.out.println("waiting for code...");
         requestAccessCode();
+        if (authorizationCode == null) {
+            return false;
+        }
         System.out.println("code received");
         System.out.println("making http request for access_token...");
         HttpResponse<String> response = requestAccessToken();
@@ -109,6 +112,7 @@ public class Controller {
                         latch.countDown();
                         responseBody = "Got the code. Return back to your program.";
                     } else {
+                        latch.countDown();
                         responseBody = "Not found authorization code. Try again.";
                     }
                     exchange.sendResponseHeaders(200, responseBody.length());
