@@ -147,6 +147,7 @@ public class Controller {
                 .uri(URI.create(url))
                 .GET()
                 .build();
+
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
@@ -156,6 +157,7 @@ public class Controller {
                 .uri(URI.create(url + "?limit=" + limit))
                 .GET()
                 .build();
+
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }
